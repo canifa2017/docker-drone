@@ -10,7 +10,7 @@ services:
     restart: always
     environment:
       - DRONE_OPEN=true
-      - DRONE_HOST=http://172.16.2.90
+      - DRONE_HOST=172.16.2.90
       - DRONE_GITHUB=true
       - DRONE_GITHUB_CLIENT=c9912a5347b37fa7cdae
       - DRONE_GITHUB_SECRET=e4ca86ddc08d56a4855f901a7bbb12ac7659b38b
@@ -25,5 +25,5 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      - DRONE_SERVER=http://172.16.2.90:8000
       - DRONE_SECRET=test
