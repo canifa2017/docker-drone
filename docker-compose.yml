@@ -13,7 +13,7 @@ services:
       - DRONE_OPEN=true
       - DRONE_ORGS=lampepfl
       - DRONE_ADMIN=felixmulder,smarter,DarkDimius,NicolasStucki,odersky,liufengyun,OlivierBlanvillain,allanrenucci,gsps,Duhemm
-      - DRONE_HOST=localhost
+      - DRONE_HOST=172.16.2.90
       - DRONE_GITHUB=true
       - DRONE_GITHUB_MERGE_REF=false
       - DRONE_GITHUB_CLIENT=c9912a5347b37fa7cdae
