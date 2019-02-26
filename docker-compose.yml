@@ -1,52 +1,29 @@
 version: '2'
+
 services:
   drone-server:
     image: drone/drone:0.8
     ports:
-      - "8000:8000"
-    networks:
-      - drone
+      - 8000:8000
     volumes:
-      - ./drone-data:/var/lib/drone/
+      - /var/lib/drone:/var/lib/drone/
+    restart: always
     environment:
-      I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
-      I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
-      DRONE_SERVER_ADDR: ":8000"
-      DRONE_DEBUG: "true"
-      DRONE_SERVER_HOST: "http://172.16.2.90"
-      DRONE_HOST: "http://172.16.2.90"
-      # CHANGEME: Randomly generate something at least 24 characters long with
-      # a password generator.
-      DRONE_SECRET: "replace-this-with-your-own-random-secret"
-      DRONE_DATABASE_DRIVER: sqlite3
-      DRONE_DATABASE_DATASOURCE: /var/lib/drone/drone.sqlite
-      DRONE_OPEN: "true"
-      DRONE_ORGS: ""
-      # CHANGEME: Replace with Github username(s) to grant admin privs to.
-      DRONE_ADMIN: admin,users,here
-      DRONE_ADMIN_ALL: "false"
-      DRONE_GITHUB: "true"
-      # CHANGEME: Swap your Github OAuth application's credentials in here.
-      DRONE_GITHUB_CLIENT: c9912a5347b37fa7cdae
-      DRONE_GITHUB_SECRET: e4ca86ddc08d56a4855f901a7bbb12ac7659b38b
+      - DRONE_OPEN=true
+      - DRONE_HOST=172.16.2.90
+      - DRONE_GITHUB=true
+      - DRONE_GITHUB_CLIENT=c9912a5347b37fa7cdae
+      - DRONE_GITHUB_SECRET=e4ca86ddc08d56a4855f901a7bbb12ac7659b38b
+      - DRONE_SECRET=test
+
   drone-agent:
     image: drone/drone:0.8
     command: agent
+    restart: always
     depends_on:
       - drone-server
-    networks:
-      - drone
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
-      I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
-      DRONE_SERVER: http://172.16.2.90:8000
-      DRONE_DEBUG: "true"
-      DRONE_HOST: http://172.16.2.90
-      # CHANGEME: Change this to match the DRONE_SECRET value specified in your
-      # drone-server container above.
-      DRONE_SECRET: "replace-this-with-your-own-random-secret"
-networks:
-  drone:
-    driver: bridge
+      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      - DRONE_SECRET=test
