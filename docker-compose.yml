@@ -14,7 +14,7 @@ services:
       DRONE_SERVER_ADDR: ":8000"
       DRONE_DEBUG: "true"
       DRONE_SERVER_HOST: "http://172.16.2.90"
-      DRONE_HOST: "172.16.2.90"
+      DRONE_HOST: "http://172.16.2.90"
       # CHANGEME: Randomly generate something at least 24 characters long with
       # a password generator.
       DRONE_SECRET: "replace-this-with-your-own-random-secret"
