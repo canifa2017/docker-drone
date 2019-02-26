@@ -43,7 +43,7 @@ services:
       I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
       DRONE_SERVER: http://172.16.2.90:8000
       DRONE_DEBUG: "true"
-      DRONE_HOST: drone-server
+      DRONE_HOST: http://172.16.2.90
       # CHANGEME: Change this to match the DRONE_SECRET value specified in your
       # drone-server container above.
       DRONE_SECRET: "replace-this-with-your-own-random-secret"
