@@ -26,5 +26,5 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DRONE_SERVER=drone-server:9999
+      - DRONE_SERVER=drone-server:8000
       - DRONE_SECRET=test
